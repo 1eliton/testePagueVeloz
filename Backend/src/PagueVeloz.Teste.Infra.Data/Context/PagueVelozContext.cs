@@ -15,6 +15,7 @@ namespace PagueVeloz.Teste.Infra.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new EmpresaMap());
+            modelBuilder.ApplyConfiguration(new FornecedorMap());
             base.OnModelCreating(modelBuilder);
         }
     }
