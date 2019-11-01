@@ -57,10 +57,8 @@ namespace PagueVeloz.Teste.Domain
         /// </summary>
         public ICollection<Telefone> Telefones { get; private set; }
 
-        public Fornecedor(Guid idEmpresa, Empresa empresa, string nome, Rg rg, DataNascimento dataNascimento, Documento documento, DateTime dataCadastro, ICollection<Telefone> telefones)
+        public Fornecedor( string nome, Rg rg, DataNascimento dataNascimento, Documento documento, DateTime dataCadastro, ICollection<Telefone> telefones)
         {
-            IdEmpresa = idEmpresa;
-            Empresa = empresa;
             Nome = nome;
             Rg = rg;
             DataNascimento = dataNascimento;
