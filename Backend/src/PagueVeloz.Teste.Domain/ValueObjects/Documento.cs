@@ -4,14 +4,21 @@ namespace PagueVeloz.Teste.Domain
 {
     public class Documento : ValueObject<Documento>
     {
-        protected override bool EqualsCore(Documento other)
+        public readonly bool EhValido = false;
+        public readonly string Value;
+
+        private Documento(string value)
         {
-            throw new System.NotImplementedException();
+            Value = value;
+            //validar
         }
+
+        public static implicit operator Documento(string cnpj) => new Documento(cnpj);
+        protected override bool EqualsCore(Documento other) => Value.Equals(other.Value);
 
         protected override int GetHashCodeCore()
         {
-            throw new System.NotImplementedException();
+            return 0;
         }
     }
 }

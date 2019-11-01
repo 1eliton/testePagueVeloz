@@ -5,7 +5,7 @@ namespace PagueVeloz.Teste.Domain
     public class DataNascimento : ValueObject<DataNascimento>
     {
         public readonly bool EhValido = false;
-        private readonly string Value;
+        public readonly string Value;
 
         private DataNascimento(string value)
         {

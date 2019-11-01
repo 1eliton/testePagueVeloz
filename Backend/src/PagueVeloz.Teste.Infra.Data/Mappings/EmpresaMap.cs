@@ -37,7 +37,8 @@ namespace PagueVeloz.Teste.Infra.Data.Mappings
 
             builder.HasMany(e => e.Fornecedores)
                 .WithOne()
-                .HasForeignKey(f => f.IdEmpresa);
+                .HasForeignKey(f => f.IdEmpresa)
+                .IsRequired(false);
         }
     }
 }
