@@ -5,7 +5,7 @@ namespace PagueVeloz.Teste.Domain
     public class Cnpj : ValueObject<Cnpj>
     {
         public readonly bool EhValido = false;
-        private readonly string Value;
+        public readonly string Value;
 
         private Cnpj(string value)
         {

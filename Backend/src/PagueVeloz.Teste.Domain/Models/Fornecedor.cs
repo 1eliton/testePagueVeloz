@@ -67,6 +67,7 @@ namespace PagueVeloz.Teste.Domain
             Documento = documento;
             DataCadastro = dataCadastro;
             Telefones = telefones;
+            
         }
     }
 }
