@@ -6,7 +6,7 @@ namespace PagueVeloz.Teste.Domain
     {
 
         public readonly bool EhValido = false;
-        public readonly string Value;
+        public string Value { get; private set; }
 
         private Telefone(string value)
         {

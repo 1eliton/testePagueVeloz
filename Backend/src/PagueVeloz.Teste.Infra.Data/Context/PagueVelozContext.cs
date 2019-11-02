@@ -8,7 +8,10 @@ namespace PagueVeloz.Teste.Infra.Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("connString");
+            optionsBuilder.UseSqlServer
+            //(@"Data Source=DESKTOP-5SL3KKS;Initial Catalog=PagueVelozTeste");
+            (@"Server=localhost;Database=PagueVelozTeste;Integrated Security=True");
+
             base.OnConfiguring(optionsBuilder);
         }
 

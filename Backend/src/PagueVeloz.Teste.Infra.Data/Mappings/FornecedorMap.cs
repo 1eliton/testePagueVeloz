@@ -32,15 +32,14 @@ namespace PagueVeloz.Teste.Infra.Data.Mappings
             {
                 dataNasc.Property(r => r.Value)
                     .HasColumnName("DataNascimento")
-                    .HasColumnType(SqlDbType.DateTime.ToString())
-                    .IsRequired(false);
+                    .HasColumnType(SqlDbType.DateTime.ToString());
             });
 
             builder.OwnsOne(f => f.Documento, dataNasc =>
             {
                 dataNasc.Property(r => r.Value)
                     .HasColumnName("Documento")
-                    .HasColumnType(SqlDbType.DateTime.ToString())
+                    .HasColumnType(SqlDbType.VarChar.ToString())
                     .HasMaxLength(15)
                     .IsRequired();
             });
@@ -54,7 +53,7 @@ namespace PagueVeloz.Teste.Infra.Data.Mappings
             {
                 tel.Property(t => t.Value)
                     .HasColumnName("Telefone")
-                    .HasColumnType(SqlDbType.DateTime.ToString())
+                    .HasColumnType(SqlDbType.VarChar.ToString())
                     .HasMaxLength(15)
                     .IsRequired();
             });

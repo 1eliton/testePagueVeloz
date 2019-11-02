@@ -15,7 +15,7 @@ namespace PagueVeloz.Teste.Domain.Tests
             Rg rg = "5.7123098089";
             Cnpj cnpj = "07.502130203";
             Documento doc = "1231232";
-            DataNascimento dataNascimento = DateTime.Now.AddDays(-18).ToString();
+            DataNascimento dataNascimento = DateTime.Now.AddDays(-18);
 
             //Act
             var fornecedor = new Fornecedor("Fornecedor de teste", rg, dataNascimento, doc, DateTime.Now, new List<Telefone>());

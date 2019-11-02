@@ -31,7 +31,7 @@ namespace PagueVeloz.Teste.Domain
         /// <para>Utilizado apenas quando o fornecedor é pessoa física.</para>
         /// <para>Null</para>
         /// </summary>
-        public DataNascimento? DataNascimento { get; private set; }
+        public DataNascimento DataNascimento { get; private set; }
 
         /// <summary>
         /// Documento do forncedor.
@@ -67,5 +67,11 @@ namespace PagueVeloz.Teste.Domain
             Telefones = telefones;
             
         }
+
+        /// <summary>
+        /// Construtor para o EF.
+        /// </summary>
+        protected Fornecedor() 
+        { }
     }
 }

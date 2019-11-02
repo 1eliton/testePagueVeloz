@@ -5,7 +5,7 @@ namespace PagueVeloz.Teste.Domain
     public class Cpf : ValueObject<Cpf>
     {
         public readonly bool EhValido = false;
-        private readonly string Value;
+        public string Value { get; private set; }
 
 
         private Cpf(string value)

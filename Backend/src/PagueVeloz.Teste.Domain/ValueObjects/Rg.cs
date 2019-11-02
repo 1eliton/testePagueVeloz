@@ -5,7 +5,7 @@ namespace PagueVeloz.Teste.Domain
     public class Rg : ValueObject<Rg>
     {
         public readonly bool EhValido = false;
-        public readonly string Value;
+        public string Value { get; private set; }
 
         private Rg(string value)
         {
