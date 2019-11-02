@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BOGUS" Version="28.4.1" />
+    <PackageReference Include="FluentAssertions" Version="5.9.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="MOQ" Version="4.13.1" />
+    <PackageReference Include="MOQ.AutoMock" Version="1.2.0.120" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
@@ -15,6 +19,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\PagueVeloz.Teste.Domain\PagueVeloz.Teste.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Fornecedor\" />
   </ItemGroup>
 
 </Project>

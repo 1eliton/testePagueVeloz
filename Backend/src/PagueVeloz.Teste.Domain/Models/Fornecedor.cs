@@ -57,21 +57,31 @@ namespace PagueVeloz.Teste.Domain
         /// </summary>
         public ICollection<Telefone> Telefones { get; private set; }
 
-        public Fornecedor( string nome, Rg rg, DataNascimento dataNascimento, Documento documento, DateTime dataCadastro, ICollection<Telefone> telefones)
+        public Fornecedor(string nome, Rg rg, DataNascimento dataNascimento, Documento documento, DateTime dataCadastro, Telefone telefone)
         {
             Nome = nome;
             Rg = rg;
             DataNascimento = dataNascimento;
             Documento = documento;
             DataCadastro = dataCadastro;
-            Telefones = telefones;
-            
+            AdicionarTelefone(telefone);
+        }
+
+        /// <summary>
+        /// Adicionar um telefone para o fornecedor
+        /// </summary>
+        /// <param name="tel">Telefone a ser adicionado</param>
+        public void AdicionarTelefone(Telefone tel)
+        {
+            if (Telefones == null)
+                Telefones = new List<Telefone>();
+            Telefones.Add(tel);
         }
 
         /// <summary>
         /// Construtor para o EF.
         /// </summary>
-        protected Fornecedor() 
+        protected Fornecedor()
         { }
     }
 }
