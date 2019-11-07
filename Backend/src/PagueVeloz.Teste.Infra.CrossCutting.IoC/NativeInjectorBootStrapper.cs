@@ -1,4 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using PagueVeloz.Teste.Application;
+using PagueVeloz.Teste.Domain;
+using PagueVeloz.Teste.Domain.Commands.Empresa;
+using PagueVeloz.Teste.Domain.Core;
+using PagueVeloz.Teste.Domain.Interfaces;
+using PagueVeloz.Teste.Infra.CrossCutting.Bus;
+using PagueVeloz.Teste.Infra.Data;
 
 namespace PagueVeloz.Teste.Infra.CrossCutting.IoC
 {
@@ -6,7 +14,22 @@ namespace PagueVeloz.Teste.Infra.CrossCutting.IoC
     {
         public static void RegisterServices(IServiceCollection services)
         {
+            // Application
+            services.AddScoped<IEmpresaAppService, EmpresaAppService>();
 
+            //Domain
+            services.AddScoped<IEmpresaRepository, EmpresaRepository>();
+
+            //Domain - Commands
+            services.AddScoped<IRequestHandler<CadastrarEmpresaCommand, bool>, EmpresaCommandHandler>();
+
+
+            // Domain Bus (Mediator)
+            services.AddScoped<IMediatorHandler, InMemoryBus>();
+
+            // Infra - Data
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddDbContext<PagueVelozContext>();
         }
     }
 }

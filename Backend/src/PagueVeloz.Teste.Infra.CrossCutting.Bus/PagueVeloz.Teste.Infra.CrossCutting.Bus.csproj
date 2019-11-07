@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PagueVeloz.Teste.Domain.Core\PagueVeloz.Teste.Domain.Core.csproj" />
-    <ProjectReference Include="..\PagueVeloz.Teste.Domain\PagueVeloz.Teste.Domain.csproj" />
   </ItemGroup>
 
 </Project>

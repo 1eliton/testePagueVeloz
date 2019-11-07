@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PagueVeloz.Teste.Application\PagueVeloz.Teste.Application.csproj" />
+    <ProjectReference Include="..\PagueVeloz.Teste.Domain.Core\PagueVeloz.Teste.Domain.Core.csproj" />
+    <ProjectReference Include="..\PagueVeloz.Teste.Domain\PagueVeloz.Teste.Domain.csproj" />
+    <ProjectReference Include="..\PagueVeloz.Teste.Infra.CrossCutting.Bus\PagueVeloz.Teste.Infra.CrossCutting.Bus.csproj" />
+    <ProjectReference Include="..\PagueVeloz.Teste.Infra.Data\PagueVeloz.Teste.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>
