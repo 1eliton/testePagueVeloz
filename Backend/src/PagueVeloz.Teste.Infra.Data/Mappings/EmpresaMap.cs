@@ -15,20 +15,20 @@ namespace PagueVeloz.Teste.Infra.Data.Mappings
 
             builder.Property(e => e.NomeFantasia)
                 .HasColumnName("NomeFantasia")
-                .HasColumnType(SqlDbType.VarChar.ToString())
+                .HasColumnType("varchar(150)")
                 .HasMaxLength(150)
                 .IsRequired();
 
             builder.Property(e => e.Uf)
                 .HasColumnName("Uf")
-                .HasColumnType(SqlDbType.VarChar.ToString())
+                .HasColumnType("varchar(2)")
                 .HasMaxLength(2)
                 .IsRequired();
 
             builder.OwnsOne(e => e.Cnpj, cnpj =>
             {
                 cnpj.Property(e => e.Value)
-                    .HasColumnType(SqlDbType.VarChar.ToString())
+                    .HasColumnType("varchar(14)")
                     .HasMaxLength(14)
                     .HasColumnName("Cnpj")
                     .IsRequired();

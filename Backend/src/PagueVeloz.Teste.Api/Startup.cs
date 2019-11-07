@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PagueVeloz.Teste.Infra.CrossCutting.IoC;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace PagueVeloz.Teste.Api
@@ -34,6 +35,8 @@ namespace PagueVeloz.Teste.Api
             //});
 
             services.AddMediatR(typeof(Startup));
+            RegisterServices(services);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +62,12 @@ namespace PagueVeloz.Teste.Api
             //app.UseSwagger();
             //app.UseSwaggerUI(c => { c.SwaggerEndpoint("../swagger/v1.0/swagger.json", "API REST v1.0"); });
             //app.UseRewriter(new RewriteOptions().AddRedirect("^$", "swagger"));
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
+            // Adding dependencies from another layers (isolated from Presentation)
+            NativeInjectorBootStrapper.RegisterServices(services);
         }
     }
 }

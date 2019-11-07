@@ -17,5 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PagueVeloz.Teste.Application\PagueVeloz.Teste.Application.csproj" />
+    <ProjectReference Include="..\PagueVeloz.Teste.Infra.CrossCutting.IoC\PagueVeloz.Teste.Infra.CrossCutting.IoC.csproj" />
   </ItemGroup>
 </Project>

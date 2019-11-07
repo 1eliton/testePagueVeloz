@@ -20,6 +20,9 @@ namespace PagueVeloz.Teste.Infra.CrossCutting.IoC
             //Domain
             services.AddScoped<IEmpresaRepository, EmpresaRepository>();
 
+            //Domain - Events
+            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
+
             //Domain - Commands
             services.AddScoped<IRequestHandler<CadastrarEmpresaCommand, bool>, EmpresaCommandHandler>();
 
