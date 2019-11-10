@@ -10,6 +10,7 @@ namespace PagueVeloz.Teste.Infra.Data
         {
             optionsBuilder.UseSqlServer
             (@"Server=localhost;Database=PagueVelozTeste;Integrated Security=True");
+            optionsBuilder.EnableSensitiveDataLogging();
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -18,6 +19,11 @@ namespace PagueVeloz.Teste.Infra.Data
             modelBuilder.ApplyConfiguration(new EmpresaMap());
             modelBuilder.ApplyConfiguration(new FornecedorMap());
             base.OnModelCreating(modelBuilder);
+        }
+
+        public override int SaveChanges()
+        {
+            return base.SaveChanges();
         }
     }
 }

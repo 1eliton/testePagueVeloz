@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using PagueVeloz.Teste.Domain.Core;
-using PagueVeloz.Teste.Domain.Exceptions;
 
 namespace PagueVeloz.Teste.Domain
 {
@@ -24,14 +22,15 @@ namespace PagueVeloz.Teste.Domain
         /// <para>Utilizado apenas quando o fornecedor é pessoa física.</para>
         /// <para>Null</para>
         /// </summary>
-        public Rg? Rg { get; private set; }
+        public Rg Rg { get; private set; }
 
         /// <summary>
         /// Data de nascimento do fornecedor.
         /// <para>Utilizado apenas quando o fornecedor é pessoa física.</para>
         /// <para>Null</para>
         /// </summary>
-        public DataNascimento DataNascimento { get; private set; }
+        //public DataNascimento DataNascimento { get; private set; }
+        public string DataNascimento { get; private set; }
 
         /// <summary>
         /// Documento do forncedor.
@@ -52,31 +51,48 @@ namespace PagueVeloz.Teste.Domain
         /// </summary>
         public DateTime DataCadastro { get; private set; }
 
-        /// <summary>
-        /// Coleção de telefones do fornecedor.
-        /// </summary>
-        public ICollection<Telefone> Telefones { get; private set; }
+        ///// <summary>
+        ///// Coleção de telefones do fornecedor.
+        ///// </summary>
+        //public ICollection<Telefone> Telefones { get; private set; }
 
-        public Fornecedor(string nome, Rg rg, DataNascimento dataNascimento, Documento documento, DateTime dataCadastro, Telefone telefone)
+        //public Fornecedor(Empresa empresa, string nome, Rg rg, DataNascimento dataNascimento, Documento documento, Telefone telefone)
+        public Fornecedor(Empresa empresa, string nome, Rg rg, string dataNascimento, Documento documento, Telefone telefone)
         {
-            Nome = nome;
+            Empresa = empresa;
             Rg = rg;
-            DataNascimento = dataNascimento;
+            DataNascimento = DateTime.Now.ToString();
             Documento = documento;
-            DataCadastro = dataCadastro;
-            AdicionarTelefone(telefone);
+
+            Nome = nome;
+            DataCadastro = DateTime.Now;
+
+            //AdicionarTelefone(telefone);
         }
 
+        ///// <summary>
+        ///// Adicionar um telefone para o fornecedor
+        ///// </summary>
+        ///// <param name="tel">Telefone a ser adicionado</param>
+        //public void AdicionarTelefone(Telefone tel)
+        //{
+        //    if (Telefones == null)
+        //        Telefones = new List<Telefone>();
+        //    Telefones.Add(tel);
+        //}
+
         /// <summary>
-        /// Adicionar um telefone para o fornecedor
+        /// Verificação se o fornecedor é maior de idade.
         /// </summary>
-        /// <param name="tel">Telefone a ser adicionado</param>
-        public void AdicionarTelefone(Telefone tel)
-        {
-            if (Telefones == null)
-                Telefones = new List<Telefone>();
-            Telefones.Add(tel);
-        }
+        /// <returns>True se for maior de idade, false caso contrário.</returns>
+        //public bool EhMaiorIdade() => (DateTime.Now.Year - DataNascimento.Value.Year) > 18;
+        public bool EhMaiorIdade() => true;/*(DateTime.Now.Year - ) > 18;*/
+
+        /// <summary>
+        /// Verificação do tipo da pessoa.
+        /// </summary>
+        /// <returns>Pessoa jurídica ou pessoa física dependendo do <seealso cref="Documento"/></returns>
+        public TipoPessoa ObterTipoPessoa() => Documento.Value.Length > 14 ? TipoPessoa.Juridica : TipoPessoa.Fisica;
 
         /// <summary>
         /// Construtor para o EF.

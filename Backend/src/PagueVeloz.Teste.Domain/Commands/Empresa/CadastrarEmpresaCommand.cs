@@ -8,5 +8,9 @@
             Cnpj = cnpj;
             Uf = uf;
         }
+        public override bool IsValid()
+        {
+            return true;
+        }
     }
 }

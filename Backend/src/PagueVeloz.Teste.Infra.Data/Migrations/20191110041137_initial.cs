@@ -12,9 +12,9 @@ namespace PagueVeloz.Teste.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    NomeFantasia = table.Column<string>(type: "VarChar", maxLength: 150, nullable: false),
-                    Cnpj = table.Column<string>(type: "VarChar", maxLength: 14, nullable: true),
-                    Uf = table.Column<string>(type: "VarChar", maxLength: 2, nullable: false)
+                    NomeFantasia = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: false),
+                    Cnpj = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: false),
+                    Uf = table.Column<string>(type: "varchar(2)", maxLength: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,8 +29,8 @@ namespace PagueVeloz.Teste.Infra.Data.Migrations
                     IdEmpresa = table.Column<Guid>(nullable: false),
                     Nome = table.Column<string>(type: "VarChar", maxLength: 150, nullable: false),
                     Rg = table.Column<string>(type: "VarChar", maxLength: 10, nullable: true),
-                    DataNascimento = table.Column<DateTime>(type: "DateTime", nullable: true),
-                    Documento = table.Column<string>(type: "VarChar", maxLength: 15, nullable: true),
+                    DataNascimento = table.Column<string>(type: "varchar(10)", nullable: true),
+                    Documento = table.Column<string>(type: "VarChar", maxLength: 15, nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "DateTime", nullable: false)
                 },
                 constraints: table =>
@@ -44,26 +44,6 @@ namespace PagueVeloz.Teste.Infra.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Telefone",
-                columns: table => new
-                {
-                    FornecedorId = table.Column<Guid>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Telefone = table.Column<string>(type: "VarChar", maxLength: 15, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Telefone", x => new { x.FornecedorId, x.Id });
-                    table.ForeignKey(
-                        name: "FK_Telefone_Fornecedor_FornecedorId",
-                        column: x => x.FornecedorId,
-                        principalTable: "Fornecedor",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Fornecedor_IdEmpresa",
                 table: "Fornecedor",
@@ -72,9 +52,6 @@ namespace PagueVeloz.Teste.Infra.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Telefone");
-
             migrationBuilder.DropTable(
                 name: "Fornecedor");
 

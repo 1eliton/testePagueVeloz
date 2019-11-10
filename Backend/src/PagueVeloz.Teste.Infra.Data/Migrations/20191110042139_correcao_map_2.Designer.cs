@@ -10,22 +10,21 @@ using PagueVeloz.Teste.Infra.Data;
 namespace PagueVeloz.Teste.Infra.Data.Migrations
 {
     [DbContext(typeof(PagueVelozContext))]
-    [Migration("20191107010209_correcao_mapeanto_hasmaxlength")]
-    partial class correcao_mapeanto_hasmaxlength
+    [Migration("20191110042139_correcao_map_2")]
+    partial class correcao_map_2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("PagueVeloz.Teste.Domain.Empresa", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("NomeFantasia")
                         .IsRequired()
@@ -47,20 +46,22 @@ namespace PagueVeloz.Teste.Infra.Data.Migrations
             modelBuilder.Entity("PagueVeloz.Teste.Domain.Fornecedor", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnName("DataCadastro")
                         .HasColumnType("DateTime");
 
-                    b.Property<Guid>("IdEmpresa")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("DataNascimento")
+                        .HasColumnName("DataNascimento")
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<Guid>("IdEmpresa");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnName("Nome")
-                        .HasColumnType("VarChar")
+                        .HasColumnType("varchar(150)")
                         .HasMaxLength(150);
 
                     b.HasKey("Id");
@@ -74,8 +75,7 @@ namespace PagueVeloz.Teste.Infra.Data.Migrations
                 {
                     b.OwnsOne("PagueVeloz.Teste.Domain.Cnpj", "Cnpj", b1 =>
                         {
-                            b1.Property<Guid>("EmpresaId")
-                                .HasColumnType("uniqueidentifier");
+                            b1.Property<Guid>("EmpresaId");
 
                             b1.Property<string>("Value")
                                 .IsRequired()
@@ -87,8 +87,10 @@ namespace PagueVeloz.Teste.Infra.Data.Migrations
 
                             b1.ToTable("Empresa");
 
-                            b1.WithOwner()
-                                .HasForeignKey("EmpresaId");
+                            b1.HasOne("PagueVeloz.Teste.Domain.Empresa")
+                                .WithOne("Cnpj")
+                                .HasForeignKey("PagueVeloz.Teste.Domain.Cnpj", "EmpresaId")
+                                .OnDelete(DeleteBehavior.Cascade);
                         });
                 });
 
@@ -97,85 +99,45 @@ namespace PagueVeloz.Teste.Infra.Data.Migrations
                     b.HasOne("PagueVeloz.Teste.Domain.Empresa", "Empresa")
                         .WithMany("Fornecedores")
                         .HasForeignKey("IdEmpresa")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.OwnsOne("PagueVeloz.Teste.Domain.DataNascimento", "DataNascimento", b1 =>
-                        {
-                            b1.Property<Guid>("FornecedorId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<DateTime>("Value")
-                                .HasColumnName("DataNascimento")
-                                .HasColumnType("DateTime");
-
-                            b1.HasKey("FornecedorId");
-
-                            b1.ToTable("Fornecedor");
-
-                            b1.WithOwner()
-                                .HasForeignKey("FornecedorId");
-                        });
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.OwnsOne("PagueVeloz.Teste.Domain.Documento", "Documento", b1 =>
                         {
-                            b1.Property<Guid>("FornecedorId")
-                                .HasColumnType("uniqueidentifier");
+                            b1.Property<Guid>("FornecedorId");
 
                             b1.Property<string>("Value")
                                 .IsRequired()
                                 .HasColumnName("Documento")
-                                .HasColumnType("VarChar")
+                                .HasColumnType("varchar(20)")
                                 .HasMaxLength(15);
 
                             b1.HasKey("FornecedorId");
 
                             b1.ToTable("Fornecedor");
 
-                            b1.WithOwner()
-                                .HasForeignKey("FornecedorId");
+                            b1.HasOne("PagueVeloz.Teste.Domain.Fornecedor")
+                                .WithOne("Documento")
+                                .HasForeignKey("PagueVeloz.Teste.Domain.Documento", "FornecedorId")
+                                .OnDelete(DeleteBehavior.Cascade);
                         });
 
                     b.OwnsOne("PagueVeloz.Teste.Domain.Rg", "Rg", b1 =>
                         {
-                            b1.Property<Guid>("FornecedorId")
-                                .HasColumnType("uniqueidentifier");
+                            b1.Property<Guid>("FornecedorId");
 
                             b1.Property<string>("Value")
                                 .HasColumnName("Rg")
-                                .HasColumnType("VarChar")
+                                .HasColumnType("varchar(10)")
                                 .HasMaxLength(10);
 
                             b1.HasKey("FornecedorId");
 
                             b1.ToTable("Fornecedor");
 
-                            b1.WithOwner()
-                                .HasForeignKey("FornecedorId");
-                        });
-
-                    b.OwnsMany("PagueVeloz.Teste.Domain.Telefone", "Telefones", b1 =>
-                        {
-                            b1.Property<Guid>("FornecedorId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<string>("Value")
-                                .IsRequired()
-                                .HasColumnName("Telefone")
-                                .HasColumnType("VarChar")
-                                .HasMaxLength(15);
-
-                            b1.HasKey("FornecedorId", "Id");
-
-                            b1.ToTable("Telefone");
-
-                            b1.WithOwner()
-                                .HasForeignKey("FornecedorId");
+                            b1.HasOne("PagueVeloz.Teste.Domain.Fornecedor")
+                                .WithOne("Rg")
+                                .HasForeignKey("PagueVeloz.Teste.Domain.Rg", "FornecedorId")
+                                .OnDelete(DeleteBehavior.Cascade);
                         });
                 });
 #pragma warning restore 612, 618

@@ -24,7 +24,14 @@ namespace PagueVeloz.Teste.Api.Controllers
         [HttpPost]
         public IActionResult Post(CadastrarEmpresaDto empresaDto)
         {
-            _empresaAppService.Cadastar(empresaDto);
+            _empresaAppService.Cadastrar(empresaDto);
+            return Response();
+        }
+
+        [HttpPost("vincular-fornecedor")]
+        public IActionResult VincularFornecedor(CadastrarFornecedorDto fornecedorDto)
+        {
+            _empresaAppService.VincularFornecedor(fornecedorDto);
             return Response();
         }
     }

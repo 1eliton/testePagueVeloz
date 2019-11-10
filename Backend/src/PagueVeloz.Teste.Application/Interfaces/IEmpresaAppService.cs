@@ -4,6 +4,7 @@ namespace PagueVeloz.Teste.Application
 {
     public interface IEmpresaAppService
     {
-        void Cadastar(CadastrarEmpresaDto cadastrarEmpresa);
+        void Cadastrar(CadastrarEmpresaDto cadastrarEmpresa);
+        void VincularFornecedor(CadastrarFornecedorDto cadastrarFornecedorDto);
     }
 }

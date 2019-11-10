@@ -15,7 +15,7 @@ namespace PagueVeloz.Teste.Infra.Data.Mappings
 
             builder.Property(f => f.Nome)
                 .HasColumnName("Nome")
-                .HasColumnType(SqlDbType.VarChar.ToString())
+                .HasColumnType("varchar(150)")
                 .HasMaxLength(150)
                 .IsRequired();
 
@@ -23,23 +23,28 @@ namespace PagueVeloz.Teste.Infra.Data.Mappings
             {
                 rg.Property(r => r.Value)
                     .HasColumnName("Rg")
-                    .HasColumnType(SqlDbType.VarChar.ToString())
+                    .HasColumnType("varchar(10)")
                     .HasMaxLength(10)
                     .IsRequired(false);
             });
 
-            builder.OwnsOne(f => f.DataNascimento, dataNasc =>
-            {
-                dataNasc.Property(r => r.Value)
-                    .HasColumnName("DataNascimento")
-                    .HasColumnType(SqlDbType.DateTime.ToString());
-            });
+            builder.Property(f => f.DataNascimento)
+                .HasColumnName("DataNascimento")
+                .HasColumnType("varchar(20)")
+                .IsRequired(false);
 
-            builder.OwnsOne(f => f.Documento, dataNasc =>
+            //builder.OwnsOne(f => f.DataNascimento, dataNasc =>
+            //{
+            //    dataNasc.Property(r => r.Value)
+            //        .HasColumnName("DataNascimento")
+            //        .HasColumnType(SqlDbType.DateTime.ToString());
+            //});w
+
+            builder.OwnsOne(f => f.Documento, doc =>
             {
-                dataNasc.Property(r => r.Value)
+                doc.Property(r => r.Value)
                     .HasColumnName("Documento")
-                    .HasColumnType(SqlDbType.VarChar.ToString())
+                    .HasColumnType("varchar(20)")
                     .HasMaxLength(15)
                     .IsRequired();
             });
@@ -49,14 +54,14 @@ namespace PagueVeloz.Teste.Infra.Data.Mappings
                 .HasColumnType(SqlDbType.DateTime.ToString())
                 .IsRequired();
 
-            builder.OwnsMany(f => f.Telefones, tel =>
-            {
-                tel.Property(t => t.Value)
-                    .HasColumnName("Telefone")
-                    .HasColumnType(SqlDbType.VarChar.ToString())
-                    .HasMaxLength(15)
-                    .IsRequired();
-            });
+            //builder.OwnsMany(f => f.Telefones, tel =>
+            //{
+            //    tel.Property(t => t.Value)
+            //        .HasColumnName("Telefone")
+            //        .HasColumnType(SqlDbType.VarChar.ToString())
+            //        .HasMaxLength(15)
+            //        .IsRequired();
+            //});
 
 
             builder.HasOne(f => f.Empresa)
