@@ -10,7 +10,8 @@
         }
         public override bool IsValid()
         {
-            return true;
+            ValidationResult = new CadastrarEmpresaCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

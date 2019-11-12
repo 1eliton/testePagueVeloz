@@ -9,8 +9,9 @@ namespace PagueVeloz.Teste.Domain
 
         private Cnpj(string value)
         {
-            Value = value;
-            //validar
+            CnpjStruct cnpjStruct = value;
+            EhValido = cnpjStruct.EhValido;
+            Value = cnpjStruct.ToString();
         }
 
         public static implicit operator Cnpj(string cnpj) => new Cnpj(cnpj);

@@ -1,25 +1,23 @@
-﻿using PagueVeloz.Teste.Domain.Core;
+﻿using System;
+using PagueVeloz.Teste.Domain.Core;
 
 namespace PagueVeloz.Teste.Domain
 {
-    public class Telefone : ValueObject<Telefone>
+    public class Telefone : Agregate
     {
+        public Guid IdFornecedor { get; private set; }
+        public Fornecedor Fornecedor { get; private set; }
+        public string Numero { get; private set; }
 
-        public readonly bool EhValido = false;
-        public string Value { get; private set; }
-
-        private Telefone(string value)
+        public Telefone(string numero)
         {
-            Value = value;
-            //validar
+            Numero = numero;
         }
 
-        public static implicit operator Telefone(string cnpj) => new Telefone(cnpj);
-        protected override bool EqualsCore(Telefone other) => Value.Equals(other.Value);
-
-        protected override int GetHashCodeCore()
-        {
-            return 0;
-        }
+        /// <summary>
+        /// EF
+        /// </summary>
+        protected Telefone()
+        { }
     }
 }

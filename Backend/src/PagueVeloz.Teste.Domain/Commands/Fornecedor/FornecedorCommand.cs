@@ -10,6 +10,6 @@ namespace PagueVeloz.Teste.Domain.Commands
         public Rg Rg { get; protected set; }
         public DataNascimento DataNascimento { get; protected set; }
         public Documento Documento { get; protected set; }
-        public Telefone Telefone { get; protected set; }
+        public string Telefone { get; protected set; }
     }
 }

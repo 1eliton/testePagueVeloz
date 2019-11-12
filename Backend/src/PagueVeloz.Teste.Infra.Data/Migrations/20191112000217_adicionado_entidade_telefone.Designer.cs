@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PagueVeloz.Teste.Infra.Data;
 
 namespace PagueVeloz.Teste.Infra.Data.Migrations
 {
     [DbContext(typeof(PagueVelozContext))]
-    partial class PagueVelozContextModelSnapshot : ModelSnapshot
+    [Migration("20191112000217_adicionado_entidade_telefone")]
+    partial class adicionado_entidade_telefone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,8 +92,8 @@ namespace PagueVeloz.Teste.Infra.Data.Migrations
                             b1.Property<string>("Value")
                                 .IsRequired()
                                 .HasColumnName("Cnpj")
-                                .HasColumnType("varchar(19)")
-                                .HasMaxLength(19);
+                                .HasColumnType("varchar(14)")
+                                .HasMaxLength(14);
 
                             b1.HasKey("EmpresaId");
 
@@ -132,8 +134,6 @@ namespace PagueVeloz.Teste.Infra.Data.Migrations
                     b.OwnsOne("PagueVeloz.Teste.Domain.Documento", "Documento", b1 =>
                         {
                             b1.Property<Guid>("FornecedorId");
-
-                            b1.Property<short>("TipoPessoa");
 
                             b1.Property<string>("Value")
                                 .IsRequired()

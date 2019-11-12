@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PagueVeloz.Teste.Infra.Data;
 
 namespace PagueVeloz.Teste.Infra.Data.Migrations
 {
     [DbContext(typeof(PagueVelozContext))]
-    partial class PagueVelozContextModelSnapshot : ModelSnapshot
+    [Migration("20191112010908_ajuste_maxlength_cnpj")]
+    partial class ajuste_maxlength_cnpj
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

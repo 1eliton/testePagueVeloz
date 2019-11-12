@@ -29,8 +29,8 @@ namespace PagueVeloz.Teste.Domain
         /// <para>Utilizado apenas quando o fornecedor é pessoa física.</para>
         /// <para>Null</para>
         /// </summary>
-        //public DataNascimento DataNascimento { get; private set; }
-        public string DataNascimento { get; private set; }
+        public DataNascimento DataNascimento { get; private set; }
+
 
         /// <summary>
         /// Documento do forncedor.
@@ -52,34 +52,33 @@ namespace PagueVeloz.Teste.Domain
         public DateTime DataCadastro { get; private set; }
 
         ///// <summary>
-        ///// Coleção de telefones do fornecedor.
-        ///// </summary>
-        //public ICollection<Telefone> Telefones { get; private set; }
+        /// Coleção de telefones do fornecedor.
+        /// </summary>
+        public ICollection<Telefone> Telefones { get; private set; }
 
-        //public Fornecedor(Empresa empresa, string nome, Rg rg, DataNascimento dataNascimento, Documento documento, Telefone telefone)
-        public Fornecedor(Empresa empresa, string nome, Rg rg, string dataNascimento, Documento documento, Telefone telefone)
+        public Fornecedor(Empresa empresa, string nome, Rg rg, DataNascimento dataNascimento, Documento documento, Telefone telefone)
         {
             Empresa = empresa;
             Rg = rg;
-            DataNascimento = DateTime.Now.ToString();
+            DataNascimento = dataNascimento;
             Documento = documento;
 
             Nome = nome;
             DataCadastro = DateTime.Now;
 
-            //AdicionarTelefone(telefone);
+            AdicionarTelefone(telefone);
         }
 
-        ///// <summary>
-        ///// Adicionar um telefone para o fornecedor
-        ///// </summary>
-        ///// <param name="tel">Telefone a ser adicionado</param>
-        //public void AdicionarTelefone(Telefone tel)
-        //{
-        //    if (Telefones == null)
-        //        Telefones = new List<Telefone>();
-        //    Telefones.Add(tel);
-        //}
+        /// <summary>
+        /// Adicionar um telefone para o fornecedor
+        /// </summary>
+        /// <param name="tel">Telefone a ser adicionado</param>
+        public void AdicionarTelefone(Telefone tel)
+        {
+            if (Telefones == null)
+                Telefones = new List<Telefone>();
+            Telefones.Add(tel);
+        }
 
         /// <summary>
         /// Verificação se o fornecedor é maior de idade.

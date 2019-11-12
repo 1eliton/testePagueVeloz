@@ -4,13 +4,14 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+
   <ItemGroup>
-    <Folder Include="Validations\Entities\" />
+    <ProjectReference Include="..\PagueVeloz.Teste.Domain.Core\PagueVeloz.Teste.Domain.Core.csproj" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <ProjectReference Include="..\PagueVeloz.Teste.Domain.Core\PagueVeloz.Teste.Domain.Core.csproj" />
+    <Folder Include="Validations\Fornecedor\" />
   </ItemGroup>
 
 </Project>

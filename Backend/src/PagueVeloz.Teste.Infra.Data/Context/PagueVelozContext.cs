@@ -1,5 +1,4 @@
-﻿using System.Data.Common;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PagueVeloz.Teste.Infra.Data.Mappings;
 
 namespace PagueVeloz.Teste.Infra.Data

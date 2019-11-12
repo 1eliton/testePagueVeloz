@@ -28,24 +28,19 @@ namespace PagueVeloz.Teste.Infra.Data.Mappings
                     .IsRequired(false);
             });
 
-            builder.Property(f => f.DataNascimento)
-                .HasColumnName("DataNascimento")
-                .HasColumnType("varchar(20)")
-                .IsRequired(false);
-
-            //builder.OwnsOne(f => f.DataNascimento, dataNasc =>
-            //{
-            //    dataNasc.Property(r => r.Value)
-            //        .HasColumnName("DataNascimento")
-            //        .HasColumnType(SqlDbType.DateTime.ToString());
-            //});w
+            builder.OwnsOne(f => f.DataNascimento, dataNasc =>
+            {
+                dataNasc.Property(r => r.Value)
+                    .HasColumnName("DataNascimento")
+                    .HasColumnType(SqlDbType.DateTime.ToString());
+            });
 
             builder.OwnsOne(f => f.Documento, doc =>
             {
                 doc.Property(r => r.Value)
                     .HasColumnName("Documento")
                     .HasColumnType("varchar(20)")
-                    .HasMaxLength(15)
+                    .HasMaxLength(20)
                     .IsRequired();
             });
 
@@ -54,20 +49,14 @@ namespace PagueVeloz.Teste.Infra.Data.Mappings
                 .HasColumnType(SqlDbType.DateTime.ToString())
                 .IsRequired();
 
-            //builder.OwnsMany(f => f.Telefones, tel =>
-            //{
-            //    tel.Property(t => t.Value)
-            //        .HasColumnName("Telefone")
-            //        .HasColumnType(SqlDbType.VarChar.ToString())
-            //        .HasMaxLength(15)
-            //        .IsRequired();
-            //});
-
-
             builder.HasOne(f => f.Empresa)
                 .WithMany(wh => wh.Fornecedores)
-                .HasForeignKey(hf => hf.IdEmpresa)
-                .IsRequired();
+                .HasForeignKey(hf => hf.IdEmpresa);
+
+            builder.HasMany(f => f.Telefones)
+                .WithOne(wh => wh.Fornecedor)
+                .HasForeignKey(hf => hf.IdFornecedor);
+
 
         }
     }

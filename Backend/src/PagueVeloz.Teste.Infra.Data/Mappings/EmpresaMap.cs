@@ -28,8 +28,8 @@ namespace PagueVeloz.Teste.Infra.Data.Mappings
             builder.OwnsOne(e => e.Cnpj, cnpj =>
             {
                 cnpj.Property(e => e.Value)
-                    .HasColumnType("varchar(14)")
-                    .HasMaxLength(14)
+                    .HasColumnType("varchar(19)")
+                    .HasMaxLength(19)
                     .HasColumnName("Cnpj")
                     .IsRequired();
             });
